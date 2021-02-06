@@ -33,13 +33,13 @@ function Contact() {
         </section>
 
         <section className="mt-4">
-          <label for="email" className="text-xl font-semibold">
+          <label for="email" className="text-xl font-semibold ">
             Email
           </label>
           <input
             id="email"
             placeholder="Email"
-            className="w-full px-4 py-2 rounded-xl mt-1"
+            className="w-full px-4 py-2 rounded-xl mt-1 focus:ring-2 outline-none"
             style={{ borderColor: "#071030", borderWidth: "2px" }}
           />
         </section>
@@ -49,7 +49,7 @@ function Contact() {
             Email
           </label>
           <div
-            className="w-full h-40 px-4 py-2 rounded-xl mt-1 flex flex-col items-end"
+            className="w-full h-40 px-4 py-2 rounded-xl mt-1 flex flex-col items-end focus-within:ring-2 outline-none"
             style={{ borderColor: "#071030", borderWidth: "2px" }}
           >
             <textarea
