@@ -1,65 +1,95 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-
+import Head from "next/head";
+import { useState } from "react";
+import { Arrow } from "../components/Arrow";
+import Contact from "../components/Contact";
+import Project from "../components/Project";
 export default function Home() {
+  const [contact, setContact] = useState(true);
+
   return (
-    <div className={styles.container}>
+    <div className="flex justify-center w-screen h-screen bg-background relative overflow-y-hidden min-h-full">
       <Head>
-        <title>Create Next App</title>
+        <title>Will Kelly</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <section
+        className={`text-white overflow-y-hidden md:overflow-y-auto ${
+          contact ? "w-full md:w-1/2 p-10" : " w-2/3"
+        }`}
+      >
+        <h1 className="hidden">Home</h1>
+        <h2 className="text-2xl max-w-min lg:text-4xl font-bold mb-1 lg:mb-3 mt-10 lg:mt-28 animation-typing-hide">
+          Hello, My name is
+        </h2>
+        <h2 className="max-w-min text-2xl lg:text-4xl font-bold animation-typing">
+          Will Kelly
+          {/* <span className="border-r-2 border-white h-full animate-flash"></span> */}
+        </h2>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        <button className="text-sm btn-arrow flex bg-blue-600 hover:underline px-4 py-1 rounded mt-5 lg:text-md font-semibold items-center">
+          Hire me
+          <Arrow />
+        </button>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <section className="my-10">
+          <div className="text-blue-300 flex items-center">
+            <svg
+              width="10"
+              height="16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current"
+            >
+              <path
+                d="M2 2l6 6-6 6"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+            <h3 className="pl-2 text-lg font-semibold">Projects</h3>
+          </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
+          <div
+            className="grid gap-5 mt-5"
+            style={{
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr)",
+            }}
           >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+            <Project
+              title="Valigators"
+              description="JavaScript validation library"
+              languages={["JavaScript"]}
+              link="https://github.com/wkelly1/Valigators"
+            />
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+            <Project
+              title="Carousel"
+              description="JavaScript carousel library"
+              languages={["JavaScript"]}
+              link="https://www.npmjs.com/package/carousel-slideshow"
+            />
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+            <Project
+              title="Meal Planner"
+              description="React meal planning app"
+              languages={["JavaScript", "React"]}
+              link="https://github.com/wkelly1/Meal-planner"
+            />
+
+            <Project
+              title="Rowing Elite"
+              description="Rowing management app"
+              languages={["Python", "Vue"]}
+              link="https://www.rowingelite.co.uk"
+            />
+          </div>
+        </section>
+      </section>
+
+      <Contact />
     </div>
-  )
+  );
 }
