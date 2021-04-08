@@ -106,10 +106,10 @@ export function Layout({ children }) {
             <h1 className="hidden">Home</h1>
             <header className="mt-14 flex justify-between font-bold md:mt-32 relative">
               <motion.div animate={isOpen ? { opacity: 0.2 } : { opacity: 1 }}>
-                <h2 className="text-2xl max-w-min lg:text-4xl font-bold mb-1 lg:mb-3 animation-typing-hide">
+                <h2 className="text-xl max-w-min lg:text-4xl font-bold mb-1 lg:mb-3 animation-typing-hide">
                   Hello, My name is
                 </h2>
-                <h2 className="max-w-min text-2xl lg:text-4xl font-bold animation-typing">
+                <h2 className="max-w-min text-xl lg:text-4xl font-bold animation-typing">
                   Will Kelly
                   {/* <span className="border-r-2 border-white h-full animate-flash"></span> */}
                 </h2>
@@ -186,7 +186,7 @@ export function Layout({ children }) {
               </nav>
             </header>
             {children}
-            <footer className="mt-72 flex justify-between">
+            <footer className="mt-32 md:mt-72 flex justify-between mb-5">
               <div className="flex">
                 <div
                   className="w-8 mr-2 cursor-pointer"

@@ -25,17 +25,6 @@ function Input(props) {
 
   return (
     <section className={props.className}>
-      {props.type !== "checkbox" && (
-        <label
-          htmlFor={props.id}
-          className={`text-xl font-semibold ${
-            props.error ? "text-red-500" : ""
-          }`}
-        >
-          {props.label}
-        </label>
-      )}
-
       {(() => {
         if (props.type === "textarea") {
           return (
