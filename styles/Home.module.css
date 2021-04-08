@@ -1,9 +1,1 @@
-.btn-arrow:hover span svg g path:last-of-type {
-  transition: all 0.05s ease;
-  opacity: 1;
-}
 
-.btn-arrow:hover span svg g path:first-of-type {
-  transition: all 0.1s ease;
-  transform: translateX(3.2px);
-}
