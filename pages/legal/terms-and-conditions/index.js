@@ -9,7 +9,7 @@ function termsAndConditions() {
       <Head>
         <title>Terms and Conditions</title>
       </Head>
-      <div className="w-1/2 mt-20 mb-10 ">
+      <div className="w-10/12 md:w-1/2 mt-20 mb-10 ">
         <div className="flex justify-between mb-5">
           <Link href="/">
             <p className="text-blue-500 cursor-pointer text-sm btn-arrow flex hover:underline lg:text-md font-semibold items-center">
