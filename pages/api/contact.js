@@ -1,26 +1,26 @@
 import { minLength, minMaxLength, Valigator } from "valigators";
+const { EOL } = require("os");
 
 const nodemailer = require("nodemailer");
 
-async function sendEmail(to, plain, html) {
-  let testAccount = await nodemailer.createTestAccount();
-
+async function sendEmail(subject, plain, html) {
+  console.log(process.env.user, process.env.pass);
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: "mail.privateemail.com",
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
+      user: process.env.user, // generated ethereal user
+      pass: process.env.pass, // generated ethereal password
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "bar@example.com, baz@example.com", // list of receivers
-    subject: "Hello ✔", // Subject line
+    from: '"will-kelly.co.uk (Portfolio website)" <contact@will-kelly.co.uk>', // sender address
+    to: "contact@will-kelly.co.uk", // list of receivers
+    subject: subject, // Subject line
     text: plain,
     html: html,
   });
@@ -58,11 +58,41 @@ export default (req, res) => {
       let body = parseBody(req.body);
       let valid = validate.validate(body.data, shape);
 
-      //sendEmail(email, message, message);
-      if (valid) {
-        res.status(200).json({ message: "Message sent" });
-      } else {
-        res.status(400).json({ message: "Invalid data" });
+      const message = `
+        Contact message sent from: Portfolio Website (will-kelly.co.uk)${EOL}
+        ${EOL}
+        Senders email: ${body.data.email}${EOL}
+        Senders name: ${body.data.name}${EOL}
+        Senders message: ${body.data.message}${EOL}
+        Requested cv: ${body.data.cv}${EOL}
+        Date sent: ${new Date()}
+      `;
+      console.log(message);
+      const htmlMsg = `
+      <p>
+      <h1>Contact message sent from: Portfolio Website (will-kelly.co.uk)</h1><br>
+      <br>
+      <b>Senders email:</b> ${body.data.email}<br>
+      <b>Senders name:</b> ${body.data.name}<br>
+      <b>Senders message:</b> ${body.data.message}<br>
+      <b>Requested cv:</b> ${body.data.cv}<br>
+      <b>Date sent:</b> ${new Date()}
+      </p>
+    `;
+
+      try {
+        if (valid) {
+          sendEmail(
+            "New contact us message: (Portfolio website)",
+            message,
+            htmlMsg
+          );
+          res.status(200).json({ message: "Message sent" });
+        } else {
+          res.status(400).json({ message: "Invalid data" });
+        }
+      } catch (ignore) {
+        res.status(400).json({ message: "Something went wrong" });
       }
       break;
 
