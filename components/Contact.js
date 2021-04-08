@@ -168,16 +168,17 @@ function Contact(props) {
         .then(({ code }) => {
           if (code === 200) {
             showMessage("success", "Message has been sent");
+            setLoading(false);
           } else {
             showMessage("error", "Something went wrong");
+            setLoading(false);
           }
         })
         .catch((error) => {
           showMessage("error", "Something went wrong");
+          setLoading(false);
         });
     }
-
-    setLoading(false);
   }
 
   return (
@@ -273,13 +274,15 @@ function Contact(props) {
             />
 
             <button className="text-white max-w-min text-sm btn-arrow flex bg-blue-600 hover:underline px-4 py-1 rounded mt-5 lg:text-md font-semibold items-center">
-              Send
               {loading ? (
-                <div className="ml-2">
+                <div className="ml-2 mr-5">
                   <Loading />
                 </div>
               ) : (
-                <Arrow />
+                <>
+                  Send
+                  <Arrow />
+                </>
               )}
             </button>
           </motion.div>

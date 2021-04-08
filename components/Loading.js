@@ -1,7 +1,75 @@
+import { motion } from "framer-motion";
+
 function Loading() {
+  const loadingContainer = {
+    width: "2rem",
+    height: "2rem",
+    display: "flex",
+    justifyContent: "space-around",
+  };
+
+  const loadingCircle = {
+    display: "block",
+    width: "0.5rem",
+    height: "0.5rem",
+    backgroundColor: "white",
+    borderRadius: "0.25rem",
+  };
+
+  const loadingContainerVariants = {
+    start: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+    end: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const loadingCircleVariants = {
+    start: {
+      y: "75%",
+    },
+    end: {
+      y: "175%",
+    },
+  };
+
+  const loadingCircleTransition = {
+    duration: 0.5,
+    yoyo: Infinity,
+    ease: "easeInOut",
+  };
+
   return (
     <div className="w-5">
-      <svg
+      <motion.div
+        style={loadingContainer}
+        variants={loadingContainerVariants}
+        initial="start"
+        animate="end"
+      >
+        <motion.span
+          style={loadingCircle}
+          variants={loadingCircleVariants}
+          transition={loadingCircleTransition}
+        />
+        <motion.span
+          style={loadingCircle}
+          variants={loadingCircleVariants}
+          transition={loadingCircleTransition}
+        />
+        <motion.span
+          style={loadingCircle}
+          variants={loadingCircleVariants}
+          transition={loadingCircleTransition}
+        />
+      </motion.div>
+
+      {/* <svg
         width="16"
         height="25"
         viewBox="0 0 16 16"
@@ -21,7 +89,7 @@ function Loading() {
           d="M5.00111 4.03105C5.84374 3.38437 6.89822 3 8.04248 3C9.45523 3 10.7311 3.58592 11.6404 4.528L13.6412 2.28563C12.1983 0.871752 10.2222 0 8.04248 0C6.13111 0 4.37631 0.670307 3.00031 1.78867L5.00111 4.03105Z"
           fill="#93C5FD"
         />
-      </svg>
+      </svg> */}
     </div>
   );
 }
