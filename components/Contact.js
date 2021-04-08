@@ -267,7 +267,8 @@ function Contact(props) {
               label="Request CV"
               className="mt-3"
               disabled={loading}
-              value={cv}
+              value=""
+              checked={cv}
               onChange={setCV}
             />
 

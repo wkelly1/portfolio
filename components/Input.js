@@ -69,7 +69,15 @@ function Input(props) {
               >
                 {props.label}
               </p>
-              <input type="checkbox" disabled={props.disabled} />
+              <input
+                type="checkbox"
+                disabled={props.disabled}
+                value={props.value}
+                onChange={(e) => {
+                  console.log(e);
+                  props.onChange(e.target.checked);
+                }}
+              />
               <span className="checkmark"></span>
             </label>
           );
