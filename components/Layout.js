@@ -149,13 +149,13 @@ export function Layout({ children }) {
                   >
                     About
                   </motion.button>
-                  <motion.button
+                  {/* <motion.button
                     onClick={() => setNeedWeb(true)}
                     whileTap={{ scale: 0.9 }}
                     className="text-white bg-blue-500 m-1 font-bold cursor-pointer focus:outline-none px-4 py-1 rounded"
                   >
                     Need a website?
-                  </motion.button>
+                  </motion.button> */}
                 </motion.nav>
               )}
               <nav className="hidden xl:block">
@@ -175,14 +175,14 @@ export function Layout({ children }) {
                 >
                   About
                 </motion.button>
-                <motion.button
+                {/* <motion.button
                   onClick={() => setNeedWeb(true)}
                   whileHover={{ scale: 1.1, y: -5, backgroundColor: "#2563EB" }}
                   whileTap={{ scale: 0.9 }}
                   className="bg-blue-600 mr-2 font-bold cursor-pointer focus:outline-none px-4 py-1 rounded"
                 >
                   Need a website?
-                </motion.button>
+                </motion.button> */}
               </nav>
             </header>
             {children}
