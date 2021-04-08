@@ -86,14 +86,15 @@ export default (req, res) => {
             "New contact us message: (Portfolio website)",
             message,
             htmlMsg
-          );
-          res.status(200).json({ message: "Message sent" });
+          )
+            .then((value) => res.status(200).json({ message: "Message sent" }))
+            .catch((error) =>
+              res.status(400).json({ message: "Something went wrong" })
+            );
         } else {
           res.status(400).json({ message: "Invalid data" });
         }
-      } catch (ignore) {
-        res.status(400).json({ message: "Something went wrong" });
-      }
+      } catch (ignore) {}
       break;
 
     default:
