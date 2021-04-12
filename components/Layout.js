@@ -246,7 +246,7 @@ export function Layout({ children }) {
                         whileTap={{ scale: 0.9 }}
                         animate={legalHover === 1 ? { color: "#808080" } : {}}
                       >
-                        <Link href="/legal/privacy-policy">
+                        <Link href="/legal/terms-and-conditions">
                           <p className="cursor-pointer">Terms & Conditions</p>
                         </Link>
                       </motion.div>
