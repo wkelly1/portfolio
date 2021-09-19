@@ -6,6 +6,12 @@ const projects = [
     link: "https://github.com/wkelly1/Valigators",
   },
   {
+    title: "IKONO",
+    description: "SVG Icon pack",
+    languages: ["JavaScript", "React"],
+    link: "https://github.com/wkelly1/Valigators",
+  },
+  {
     title: "Carousel",
     description: "JavaScript carousel library",
     languages: ["JavaScript"],
