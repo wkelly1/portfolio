@@ -9,7 +9,7 @@ const projects = [
     title: "IKONO",
     description: "SVG Icon pack",
     languages: ["JavaScript", "React"],
-    link: "https://github.com/wkelly1/Valigators",
+    link: "ikono.will-kelly.co.uk",
   },
   {
     title: "Carousel",
