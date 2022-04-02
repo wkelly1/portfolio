@@ -1,8 +1,32 @@
 import { motion } from "framer-motion";
 import { ExperienceIcon } from "../../components/ExperienceIcon";
 import { Layout } from "../../components/Layout";
+import { fetchAndActivate, getValue } from "firebase/remote-config";
+import dynamic from "next/dynamic";
+
+import { useEffect, useState } from "react";
+import { useRemoteConfig } from "../../firebase";
+
+// export const getStaticProps = async () => {
+//   return {
+//     props: {
+//       value: getValue(remoteConfig, "about_description"),
+//     },
+//   };
+// };
 
 function about() {
+  const [value, setValue] = useState("Interested in web development");
+
+  useEffect(() => {
+    const remoteConfig = useRemoteConfig();
+
+    fetchAndActivate(remoteConfig).then((v) => {
+      let val = getValue(remoteConfig, "about_description");
+      setValue(val.asString());
+    });
+  }, []);
+
   return (
     <Layout>
       <motion.div
@@ -22,7 +46,7 @@ function about() {
           </a>
         </p>
         <br />
-        <p>Interested in web development</p>
+        <p>{value}</p>
         <br />
         <div className="text-blue-300 flex items-center">
           <svg
