@@ -1,9 +1,23 @@
 import Project from "../components/Project";
-import projects from "../projects.config";
+// import projects from "../projects.config";
 import { motion } from "framer-motion";
 import { Layout } from "../components/Layout";
+import { useRemoteConfig } from "../firebase";
+import { fetchAndActivate, getValue } from "firebase/remote-config";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const remoteConfig = useRemoteConfig();
+
+    fetchAndActivate(remoteConfig).then((v) => {
+      let val = getValue(remoteConfig, "projects");
+      setProjects(JSON.parse(val.asString()));
+    });
+  }, []);
+
   return (
     <Layout>
       <motion.section

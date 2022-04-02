@@ -8,10 +8,12 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Arrow } from "./Arrow";
 import Contact from "./Contact";
 import NeedWebsite from "./NeedWebsite";
+import { useRemoteConfig } from "../firebase";
+import { fetchAndActivate, getValue } from "firebase/remote-config";
 
 const Path = (props) => (
   <motion.path
@@ -60,9 +62,22 @@ export function Layout({ children }) {
   const [open, setOpen] = useState(false);
   const [viewLegal, setViewLegal] = useState(false);
   const [legalHover, setLegalHover] = useState(0);
+  const [tagLine1, setTagLine1] = useState("Hello, My name is");
+  const [tagLine2, setTagLine2] = useState("Will Kelly");
   const [isOpen, toggleOpen] = useCycle(false, true);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const remoteConfig = useRemoteConfig();
+
+    fetchAndActivate(remoteConfig).then((v) => {
+      let tagline_line_1 = getValue(remoteConfig, "tagLine1");
+      let tagline_line_2 = getValue(remoteConfig, "tagLine2");
+      setTagLine1(tagline_line_1.asString());
+      setTagLine2(tagline_line_2.asString());
+    });
+  }, []);
 
   const container = {
     hidden: { opacity: 0 },
@@ -107,10 +122,10 @@ export function Layout({ children }) {
             <header className="mt-14 flex justify-between font-bold md:mt-32 relative">
               <motion.div animate={isOpen ? { opacity: 0.2 } : { opacity: 1 }}>
                 <h2 className="text-xl max-w-min lg:text-4xl font-bold mb-1 lg:mb-3 animation-typing-hide">
-                  Hello, My name is
+                  {tagLine1}
                 </h2>
                 <h2 className="max-w-min text-xl lg:text-4xl font-bold animation-typing">
-                  Will Kelly
+                  {tagLine2}
                   {/* <span className="border-r-2 border-white h-full animate-flash"></span> */}
                 </h2>
                 <button
