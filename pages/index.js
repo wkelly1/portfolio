@@ -181,7 +181,7 @@ export default function Home() {
 
           <div className="w-[100%]  box-border px-10">
             <form
-              className="bg-[#1F2237]  sm:w-2/3 mt-20 flex card relative "
+              className="bg-[#1F2237]  sm:w-2/3 mt-20 flex card relative rounded"
               onSubmit={handleSubmit}
             >
               <div className="dots w-[10%] sm:w-1/5"></div>
