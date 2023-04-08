@@ -5,14 +5,14 @@ import { ArrowL, Arrow } from "../../../components/Arrow";
 
 function termsAndConditions() {
   return (
-    <div className="flex justify-center bg-background text-white">
+    <div className="flex justify-center bg-background text-[#D2D3D7]">
       <Head>
         <title>Terms and Conditions</title>
       </Head>
       <div className="w-10/12 md:w-1/2 mt-20 mb-10 ">
         <div className="flex justify-between mb-5">
           <Link href="/">
-            <p className="text-blue-500 cursor-pointer text-sm btn-arrow flex hover:underline lg:text-md font-semibold items-center">
+            <p className="text-[#4CFFC9] cursor-pointer text-xs btn-arrow flex hover:underline lg:text-md font-semibold items-center uppercase">
               <span className="transform rotate-180 mr-2">
                 <ArrowL />
               </span>
@@ -20,13 +20,15 @@ function termsAndConditions() {
             </p>
           </Link>
           <Link href="/legal/privacy-policy">
-            <p className="text-blue-500 cursor-pointer text-sm btn-arrow flex hover:underline  lg:text-md font-semibold items-center">
+            <p className="text-[#4CFFC9] cursor-pointer text-xs btn-arrow flex hover:underline  lg:text-md font-semibold items-center uppercase">
               Privacy Policy
               <Arrow />
             </p>
           </Link>
         </div>
-        <h1 className="text-3xl font-bold mb-5">Terms &amp; Conditions</h1>
+        <h1 className="text-3xl font-bold mb-5 text-white">
+          Terms &amp; Conditions
+        </h1>
         <p>
           By using the site, these terms will automatically apply to you – you
           should make sure therefore that you read them carefully before using
@@ -117,7 +119,7 @@ function termsAndConditions() {
           (if needed) delete it from your device.
         </p>
         <br />
-        <h2 className="text-xl font-bold mt-5 mb-2">
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">
           Changes to This Terms and Conditions
         </h2>
 
@@ -128,7 +130,7 @@ function termsAndConditions() {
           this page. These changes are effective immediately after they are
           posted on this page.
         </p>
-        <h2 className="text-xl font-bold mt-5 mb-2">Contact Us</h2>
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">Contact Us</h2>
         <p>
           If you have any questions or suggestions about my Terms and
           Conditions, do not hesitate to contact me.
