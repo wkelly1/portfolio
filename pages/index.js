@@ -56,6 +56,7 @@ export default function Home() {
         { duration: 3000, fill: "forwards" }
       );
     };
+    animatedText();
   }, []);
 
   return (
