@@ -1,29 +1,28 @@
 module.exports = {
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       backgroundColor: {
-        background: "#071030",
+        background: "#0F1223",
+        main: "#4BFFC9",
       },
-      textColor: {
-        main: "#071030",
+      greenColor: {
+        main: "#4BFFC9",
       },
       fontFamily: {
-        sans: ["'Source Code Pro', monospace"],
-        serif: ["'Source Code Pro', monospace"],
-        mono: ["'Source Code Pro', monospace"],
-        display: ["'Source Code Pro', monospace"],
-        body: ["'Source Code Pro', monospace"],
+        sans: ["'Rubik', sans-serif"],
+        serif: ["'Rubik', sans-serif"],
+        mono: ["'Rubik', sans-serif"],
+        display: ["'Rubik', sans-serif"],
+        body: ["'Rubik', sans-serif"],
       },
       gridAutoColumns: {
         "fr-min": "minmax(100px, 1fr)",
       },
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ["disabled"],
     },
   },
   plugins: [],

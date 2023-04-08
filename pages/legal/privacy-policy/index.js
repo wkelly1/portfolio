@@ -9,24 +9,24 @@ function privacyPolicy() {
       <Head>
         <title>Privacy Policy</title>
       </Head>
-      <div className="w-10/12 md:w-1/2 mt-20 mb-10 text-white ">
+      <div className="w-10/12 md:w-1/2 mt-20 mb-10 text-[#D2D3D7] ">
         <div className="flex justify-between mb-5">
           <Link href="/">
-            <p className="text-blue-500 cursor-pointer text-sm btn-arrow flex hover:underline lg:text-md font-semibold items-center">
+            <p className="text-[#4CFFC9] cursor-pointer text-xs btn-arrow flex hover:underline lg:text-md font-semibold items-center">
               <span className="transform rotate-180 mr-2">
                 <ArrowL />
               </span>
-              Home
+              HOME
             </p>
           </Link>
           <Link href="/legal/terms-and-conditions">
-            <p className="text-blue-500 cursor-pointer text-sm btn-arrow flex hover:underline  lg:text-md font-semibold items-center">
-              Terms and Conditions
+            <p className="text-[#4CFFC9] cursor-pointer text-xs btn-arrow flex hover:underline  lg:text-md font-semibold items-center">
+              TERMS AND CONDITIONS
               <Arrow />
             </p>
           </Link>
         </div>
-        <h1 className="text-3xl font-bold mb-5">Privacy Policy</h1>
+        <h1 className="text-3xl font-bold mb-5 text-white">Privacy Policy</h1>
         <p>
           Will Kelly ("I") operates will-kelly.co.uk (the "Site"). This page
           informs you of our policies regarding the collection, use and
@@ -35,7 +35,7 @@ function privacyPolicy() {
           Site. By using the Site, you agree to the collection and use of
           information in accordance with this policy.
         </p>
-        <h2 className="text-xl font-bold mt-5 mb-2">
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">
           Information Collection and Use
         </h2>
         <p>
@@ -55,7 +55,7 @@ function privacyPolicy() {
           </p>
           <ul></ul>
         </div>
-        <h2 className="text-xl font-bold mt-5 mb-2">Log Data</h2>
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">Log Data</h2>
         <p>
           Like many site operators, we collect information that your browser
           sends whenever you visit our Site ("Log Data"). This Log Data may
@@ -65,7 +65,7 @@ function privacyPolicy() {
           and other statistics. In addition, we may use third party services
           such as Google Analytics that collect, monitor and analyze this …
         </p>
-        <h2 className="text-xl font-bold mt-5 mb-2">Cookies</h2>
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">Cookies</h2>
         <p>
           Cookies are files with small amount of data, which may include an
           anonymous unique identifier. Cookies are sent to your browser from a
@@ -92,7 +92,7 @@ function privacyPolicy() {
           tasks assigned to them on our behalf. However, they are obligated not
           to disclose or use the information for any other purpose.
         </p>
-        <h2 className="text-xl font-bold mt-5 mb-2">Security</h2>
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">Security</h2>
         <p>
           I value your trust in providing us your Personal Information, thus we
           are striving to use commercially acceptable means of protecting it.
@@ -100,7 +100,9 @@ function privacyPolicy() {
           method of electronic storage is 100% secure and reliable, and I cannot
           guarantee its absolute security.
         </p>
-        <h2 className="text-xl font-bold mt-5 mb-2">Links to Other Sites</h2>
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">
+          Links to Other Sites
+        </h2>
         <p>
           This Service may contain links to other sites. If you click on a
           third-party link, you will be directed to that site. Note that these
@@ -109,7 +111,7 @@ function privacyPolicy() {
           over and assume no responsibility for the content, privacy policies,
           or practices of any third-party sites or services.
         </p>
-        <h2 className="text-xl font-bold mt-5 mb-2">Users Rights</h2>
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">Users Rights</h2>
         <p>Under GDPR you have 8 main rights. These are:</p>
         <ul className="list-disc list-inside leading-snug pl-2">
           <li>The Right to be Informed</li>
@@ -128,12 +130,14 @@ function privacyPolicy() {
             <span className="text-blue-500">here</span>
           </Link>{" "}
           or email use at{" "}
-          <a className="text-blue-500" href="mailto:contact@will-kelly.co.uk">
-            contact@will-kelly.co.uk
+          <a className="text-blue-500" href="mailto:enquiries@will-kelly.co.uk">
+            enquiries@will-kelly.co.uk
           </a>
         </p>
 
-        <h2 className="text-xl font-bold mt-5 mb-2">Children's Privacy</h2>
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">
+          Children's Privacy
+        </h2>
         <p>
           These Services do not address anyone under the age of 13. I do not
           knowingly collect personally identifiable information from children
@@ -153,7 +157,7 @@ function privacyPolicy() {
           page. These changes are effective immediately after they are posted on
           this page.
         </p>
-        <h2 className="text-xl font-bold mt-5 mb-2">Contact Us</h2>
+        <h2 className="text-xl font-bold mt-5 mb-2 text-white">Contact Us</h2>
         <p>
           If you have any questions or suggestions about my Privacy Policy, do
           not hesitate to contact me.
