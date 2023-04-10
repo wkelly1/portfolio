@@ -69,3 +69,25 @@
   top: 50%;
   opacity: 1;
 }
+
+.card .mouse {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card:hover .mouse {
+  opacity: 1;
+}
+
+.card .mouse div {
+  opacity: 0;
+}
+
+
+.card:hover .mouse div {
+  opacity: 1;
+  transition: opacity 0.5s;
+  transition-delay: 0.2s;
+
+}
+

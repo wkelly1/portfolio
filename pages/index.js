@@ -45,6 +45,8 @@ export default function Home() {
 
     const blob = document.getElementById("blob");
 
+    const mice = document.getElementsByClassName("mouse");
+
     window.onpointermove = (event) => {
       const { clientX, clientY } = event;
 
@@ -55,8 +57,35 @@ export default function Home() {
         },
         { duration: 3000, fill: "forwards" }
       );
+
+      for (const c of mice) {
+        c.animate(
+          {
+            left: `${clientX}px`,
+            top: `${clientY}px`,
+          },
+          { duration: 500, fill: "forwards" }
+        );
+      }
     };
     animatedText();
+
+    // const cards = document.getElementsByClassName("card");
+    // console.log(cards);
+    // for (const card of cards) {
+    //   card.onmouseover = (event) => {
+    //     for (const mouse of mice) {
+    //       mouse.style.opacity = 1;
+    //     }
+    //   };
+    // }
+    // for (const card of cards) {
+    //   card.onmouseleave = (event) => {
+    //     for (const mouse of mice) {
+    //       mouse.style.opacity = 0;
+    //     }
+    //   };
+    // }
   }, []);
 
   return (
@@ -110,8 +139,33 @@ export default function Home() {
           <div className="flex-wrap flex gap-3">
             <a
               href="https://ikono.will-kelly.co.uk"
-              className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative "
+              className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative hover:cursor-none"
             >
+              <span className="mouse w-14 h-14  bg-white rounded-full fixed z-50 top-0 left-0 transition-all -translate-x-1/2 -translate-y-1/2 flex justify-center items-center ">
+                <svg
+                  height="24"
+                  width="24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="-rotate-45"
+                >
+                  <path
+                    d="M15.418 9.014c2.003.165 3.082 1.534 3.082 3.176 0 1.634-1.071 2.984-3.082 3.15a43.116 43.116 0 0 1-.27 0l-.814.002H13v2a1168.533 1168.533 0 0 0 2.156-.002h.021c.162 0 .337-.002.405-.007 3.043-.251 4.918-2.463 4.918-5.143 0-2.671-1.867-4.917-4.918-5.17a8.055 8.055 0 0 0-.405-.006h-.02l-.821-.002H13v2a982.124 982.124 0 0 1 2.147.001l.203.002c.07 0 .086 0 .068-.001ZM11 15.34l-2.308-.003h-.356c-1.147 0-1.962-.382-2.49-.92-.534-.543-.846-1.321-.846-2.24 0-.92.312-1.697.846-2.241.528-.538 1.343-.919 2.49-.919h.354L11 9.013v-2l-2.313.004h-.351c-1.615 0-2.968.55-3.918 1.518C3.475 9.497 3 10.8 3 12.177c0 1.378.475 2.68 1.418 3.641.95.968 2.303 1.518 3.918 1.518h.352c.466.002 1.34.003 2.312.004v-2Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    d="M15.5 12.168H8"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+                <div className="absolute top-16 bg-white rounded-xl text-[0.6rem] px-2 py-1 bg-opacity-50 w-max">
+                  https://ikono.will-kelly.co.uk
+                </div>
+              </span>
               <div className="w-full h-1/2 dots group-hover:bg-[-50px_-50px] transition-all duration-500"></div>
               <div className="w-full p-5">
                 <h2 className="text-white font-bold text-2xl mb-2">IKONO</h2>
@@ -120,10 +174,36 @@ export default function Home() {
                 </p>
               </div>
             </a>
+
             <a
               href="https://www.npmjs.com/package/valigators"
-              className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative "
+              className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative hover:cursor-none"
             >
+              <span className="mouse w-14 h-14  bg-white rounded-full fixed z-50 top-0 left-0 transition-all -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+                <svg
+                  height="24"
+                  width="24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="-rotate-45"
+                >
+                  <path
+                    d="M15.418 9.014c2.003.165 3.082 1.534 3.082 3.176 0 1.634-1.071 2.984-3.082 3.15a43.116 43.116 0 0 1-.27 0l-.814.002H13v2a1168.533 1168.533 0 0 0 2.156-.002h.021c.162 0 .337-.002.405-.007 3.043-.251 4.918-2.463 4.918-5.143 0-2.671-1.867-4.917-4.918-5.17a8.055 8.055 0 0 0-.405-.006h-.02l-.821-.002H13v2a982.124 982.124 0 0 1 2.147.001l.203.002c.07 0 .086 0 .068-.001ZM11 15.34l-2.308-.003h-.356c-1.147 0-1.962-.382-2.49-.92-.534-.543-.846-1.321-.846-2.24 0-.92.312-1.697.846-2.241.528-.538 1.343-.919 2.49-.919h.354L11 9.013v-2l-2.313.004h-.351c-1.615 0-2.968.55-3.918 1.518C3.475 9.497 3 10.8 3 12.177c0 1.378.475 2.68 1.418 3.641.95.968 2.303 1.518 3.918 1.518h.352c.466.002 1.34.003 2.312.004v-2Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    d="M15.5 12.168H8"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+                <div className="absolute top-16 bg-white rounded-xl text-[0.6rem] px-2 py-1 bg-opacity-50 w-max">
+                  https://www.npmjs.com/package/valigators
+                </div>
+              </span>
               <div className="w-full h-1/2 dots group-hover:bg-[-50px_-50px] transition-all duration-500"></div>
               <div className="w-full p-5">
                 <h2 className="text-white font-bold text-2xl mb-2">
@@ -148,8 +228,33 @@ export default function Home() {
             </div>
             <a
               href="https://github.com/wkelly1/Carousel"
-              className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative"
+              className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative hover:cursor-none"
             >
+              <span className="mouse w-14 h-14  bg-white rounded-full fixed z-50 top-0 left-0 transition-all -translate-x-1/2 -translate-y-1/2 flex justify-center items-center ">
+                <svg
+                  height="24"
+                  width="24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="-rotate-45"
+                >
+                  <path
+                    d="M15.418 9.014c2.003.165 3.082 1.534 3.082 3.176 0 1.634-1.071 2.984-3.082 3.15a43.116 43.116 0 0 1-.27 0l-.814.002H13v2a1168.533 1168.533 0 0 0 2.156-.002h.021c.162 0 .337-.002.405-.007 3.043-.251 4.918-2.463 4.918-5.143 0-2.671-1.867-4.917-4.918-5.17a8.055 8.055 0 0 0-.405-.006h-.02l-.821-.002H13v2a982.124 982.124 0 0 1 2.147.001l.203.002c.07 0 .086 0 .068-.001ZM11 15.34l-2.308-.003h-.356c-1.147 0-1.962-.382-2.49-.92-.534-.543-.846-1.321-.846-2.24 0-.92.312-1.697.846-2.241.528-.538 1.343-.919 2.49-.919h.354L11 9.013v-2l-2.313.004h-.351c-1.615 0-2.968.55-3.918 1.518C3.475 9.497 3 10.8 3 12.177c0 1.378.475 2.68 1.418 3.641.95.968 2.303 1.518 3.918 1.518h.352c.466.002 1.34.003 2.312.004v-2Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                  />
+                  <path
+                    d="M15.5 12.168H8"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+                <div className="absolute top-16 bg-white rounded-xl text-[0.6rem] px-2 py-1 bg-opacity-50 w-max">
+                  https://github.com/wkelly1/Carousel
+                </div>
+              </span>
               <div className="w-full h-1/2 dots group-hover:bg-[-50px_-50px] transition-all duration-500"></div>
               <div className="w-full p-5">
                 <h2 className="text-white font-bold text-2xl mb-2">Carousel</h2>
