@@ -70,15 +70,25 @@ export default function Home() {
     };
     animatedText();
 
-    // const cards = document.getElementsByClassName("card");
+    const cards = document.getElementsByClassName("card");
     // console.log(cards);
-    // for (const card of cards) {
-    //   card.onmouseover = (event) => {
-    //     for (const mouse of mice) {
-    //       mouse.style.opacity = 1;
-    //     }
-    //   };
-    // }
+    for (const card of cards) {
+      card.onmousedown = (event) => {
+        for (const mouse of mice) {
+          mouse.style.scale = 0.9;
+        }
+      };
+      card.onmouseup = (event) => {
+        for (const mouse of mice) {
+          mouse.style.scale = 1;
+        }
+      };
+      card.onmouseleave = (event) => {
+        for (const mouse of mice) {
+          mouse.style.scale = 1;
+        }
+      };
+    }
     // for (const card of cards) {
     //   card.onmouseleave = (event) => {
     //     for (const mouse of mice) {
