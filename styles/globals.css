@@ -1,13 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
-.blob{
+.blob {
   height: 400px;
   aspect-ratio: 1;
   border-radius: 100%;
-  background: linear-gradient(180deg, rgba(69, 68, 152, 0.5) 0%, rgba(57, 222, 222, 0.5) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(69, 68, 152, 0.5) 0%,
+    rgba(57, 222, 222, 0.5) 100%
+  );
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
   top: 45%;
@@ -22,45 +26,59 @@
   from {
     rotate: 0deg;
   }
-  
+
   50% {
     scale: 1 1.5;
   }
-  
+
   to {
     rotate: 360deg;
   }
 }
 
-
 .dots {
   background-image: radial-gradient(
-    rgba(255, 255, 255, 0.1) 2px, 
+    rgba(255, 255, 255, 0.1) 2px,
     transparent 2px
   );
   background-position: 50% 50%;
   background-size: 1.1rem 1.1rem;
 }
 
-.card:after {  
+.card .mouse {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card:hover > .mouse {
+  opacity: 1;
+}
+
+.card .mouse div {
+  opacity: 0;
+}
+
+.card:hover .mouse div {
+  opacity: 1;
+  transition: opacity 0.5s;
+  transition-delay: 0.2s;
+}
+
+.card:after {
   content: "";
   height: 70px;
-  width: 1px;  
-  position: absolute;  
+  width: 1px;
+  position: absolute;
   left: -1px;
   top: 65%;
   transition: top, opacity;
   transition-duration: 600ms;
   transition-timing-function: ease;
-  background: linear-gradient(
-    transparent,
-    #4BBEFF,
-    transparent
-  );
+  background: linear-gradient(transparent, #4bbeff, transparent);
   opacity: 0;
 }
 
-.card:after {  
+.card:after {
   top: 75%;
   opacity: 0;
 }
@@ -69,25 +87,3 @@
   top: 50%;
   opacity: 1;
 }
-
-.card .mouse {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.card:hover .mouse {
-  opacity: 1;
-}
-
-.card .mouse div {
-  opacity: 0;
-}
-
-
-.card:hover .mouse div {
-  opacity: 1;
-  transition: opacity 0.5s;
-  transition-delay: 0.2s;
-
-}
-

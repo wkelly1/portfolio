@@ -1,9 +1,86 @@
 import { ValidationError, useForm } from "@formspree/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import useMouse from "@react-hook/mouse-position";
+
+const useVariants = (ref) => {
+  const mouse = useMouse(ref, {
+    enterDelay: 100,
+    leaveDelay: 100,
+  });
+
+  let mouseXPosition = 0;
+  let mouseYPosition = 0;
+  if (mouse.clientX !== null) {
+    mouseXPosition = mouse.clientX;
+  }
+
+  if (mouse.clientY !== null) {
+    mouseYPosition = mouse.clientY;
+  }
+
+  return {
+    hide: {
+      opacity: 0,
+      x: mouseXPosition - 28,
+      y: mouseYPosition - 28,
+    },
+    show: {
+      opacity: 1,
+      x: mouseXPosition - 28,
+      y: mouseYPosition - 28,
+    },
+  };
+};
+
+function LinkMouse({ link, show, parentRef }) {
+  const variants = useVariants(parentRef);
+
+  return (
+    <motion.div
+      variants={variants}
+      animate={show}
+      transition={{
+        type: "spring",
+        stiffness: 500,
+        damping: 28,
+      }}
+      className="fixed top-0 left-0 z-50 flex items-center justify-center bg-white rounded-full pointer-events-none w-14 h-14 "
+    >
+      <svg
+        height="24"
+        width="24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="-rotate-45"
+      >
+        <path
+          d="M15.418 9.014c2.003.165 3.082 1.534 3.082 3.176 0 1.634-1.071 2.984-3.082 3.15a43.116 43.116 0 0 1-.27 0l-.814.002H13v2a1168.533 1168.533 0 0 0 2.156-.002h.021c.162 0 .337-.002.405-.007 3.043-.251 4.918-2.463 4.918-5.143 0-2.671-1.867-4.917-4.918-5.17a8.055 8.055 0 0 0-.405-.006h-.02l-.821-.002H13v2a982.124 982.124 0 0 1 2.147.001l.203.002c.07 0 .086 0 .068-.001ZM11 15.34l-2.308-.003h-.356c-1.147 0-1.962-.382-2.49-.92-.534-.543-.846-1.321-.846-2.24 0-.92.312-1.697.846-2.241.528-.538 1.343-.919 2.49-.919h.354L11 9.013v-2l-2.313.004h-.351c-1.615 0-2.968.55-3.918 1.518C3.475 9.497 3 10.8 3 12.177c0 1.378.475 2.68 1.418 3.641.95.968 2.303 1.518 3.918 1.518h.352c.466.002 1.34.003 2.312.004v-2Z"
+          fill="currentColor"
+          fillRule="evenodd"
+        />
+        <path
+          d="M15.5 12.168H8"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+      <div className="absolute top-16 bg-white rounded-xl text-[0.6rem] px-2 py-1 bg-opacity-50 w-max">
+        {link}
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   const [year, setYear] = useState(new Date().getFullYear());
   const [state, handleSubmit] = useForm("mayzlyvy");
+  const [show, setShow] = useState("hide");
+  const [mouseText, setMouseText] = useState("");
+
+  const ref = useRef(null);
 
   const animatedText = (event) => {
     let item = document.getElementById("animatedText");
@@ -58,15 +135,15 @@ export default function Home() {
         { duration: 3000, fill: "forwards" }
       );
 
-      for (const c of mice) {
-        c.animate(
-          {
-            left: `${clientX}px`,
-            top: `${clientY}px`,
-          },
-          { duration: 500, fill: "forwards" }
-        );
-      }
+      // for (const c of mice) {
+      //   c.animate(
+      //     {
+      //       left: `${clientX}px`,
+      //       top: `${clientY}px`,
+      //     },
+      //     { duration: 500, fill: "forwards" }
+      //   );
+      // }
     };
     animatedText();
 
@@ -99,7 +176,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-background w-full h-full min-h-screen font-sans relative pb-56 overflow-x-hidden">
+    <div
+      className="relative w-full h-full min-h-screen pb-56 overflow-x-hidden font-sans bg-background"
+      ref={ref}
+    >
       <section className="h-[90vh] min-h-[700px] relative">
         <div className="absolute left-[calc(30%-50px)] top-[calc(200px+1.25rem)] bg-main blur-[2.5px] rounded w-4 h-4 -ml-2 -mt-2 z-30"></div>
         <div
@@ -122,14 +202,15 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-full z-20 relative">
+      <LinkMouse link={mouseText} show={show} parentRef={ref} />
+      <section className="relative z-20 h-full">
         <div className="absolute left-[calc(30%-50px)]  bg-main blur-[2.5px] rounded w-4 h-4 -ml-2 z-30"></div>
         <div className="ml-[30%]">
           <p className="text-[#4CFFC9] font-bold text-xs">ABOUT</p>
-          <h2 className="text-white font-bold text-2xl mb-5">What do I do?</h2>
-          <p className="w-full sm:w-1/2 text-xs text-white opacity-60 pr-5">
-            I'm currently working on the final year of an MEng Computer Science
-            degree at the University of Southampton.
+          <h2 className="mb-5 text-2xl font-bold text-white">What do I do?</h2>
+          <p className="w-full pr-5 text-xs text-white sm:w-1/2 opacity-60">
+            Currently working as a Software Engineer at a Cyber Security
+            company.
             <br></br>
             <br></br>I am very interested in solving problems and have gained
             experience in many areas of Computer Science. I do have particular
@@ -138,20 +219,25 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className="h-full pt-56 z-20 relative">
+      <section className="relative z-20 h-full pt-56">
         <div className="absolute left-[calc(30%-50px)]  bg-main blur-[2.5px] rounded w-4 h-4 -ml-2 z-30"></div>
         <div className="ml-[30%]">
           <p className="text-[#4CFFC9] font-bold text-xs">WORK</p>
-          <h2 className="text-white font-bold text-2xl mb-10">
+          <h2 className="mb-10 text-2xl font-bold text-white">
             What have I worked on?
           </h2>
 
-          <div className="flex-wrap flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <a
               href="https://ikono.will-kelly.co.uk"
               className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative hover:cursor-none"
+              onMouseEnter={() => {
+                setShow("show");
+                setMouseText("https://ikono.will-kelly.co.uk");
+              }}
+              onMouseLeave={() => setShow("hide")}
             >
-              <span className="mouse w-14 h-14  bg-white rounded-full fixed z-50 top-0 left-0 transition-all -translate-x-1/2 -translate-y-1/2 flex justify-center items-center ">
+              {/* <span className="fixed top-0 left-0 z-50 flex items-center justify-center transition-all -translate-x-1/2 -translate-y-1/2 bg-white rounded-full mouse w-14 h-14 ">
                 <svg
                   height="24"
                   width="24"
@@ -175,10 +261,10 @@ export default function Home() {
                 <div className="absolute top-16 bg-white rounded-xl text-[0.6rem] px-2 py-1 bg-opacity-50 w-max">
                   https://ikono.will-kelly.co.uk
                 </div>
-              </span>
+              </span> */}
               <div className="w-full h-1/2 dots group-hover:bg-[-50px_-50px] transition-all duration-500"></div>
               <div className="w-full p-5">
-                <h2 className="text-white font-bold text-2xl mb-2">IKONO</h2>
+                <h2 className="mb-2 text-2xl font-bold text-white">IKONO</h2>
                 <p className="text-xs text-white opacity-60">
                   A large collection of SVG icons available with an MIT license.
                 </p>
@@ -188,8 +274,13 @@ export default function Home() {
             <a
               href="https://www.npmjs.com/package/valigators"
               className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative hover:cursor-none"
+              onMouseEnter={() => {
+                setShow("show");
+                setMouseText("https://www.npmjs.com/package/valigators");
+              }}
+              onMouseLeave={() => setShow("hide")}
             >
-              <span className="mouse w-14 h-14  bg-white rounded-full fixed z-50 top-0 left-0 transition-all -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+              {/* <div className="fixed top-0 left-0 z-50 flex items-center justify-center transition-all -translate-x-1/2 -translate-y-1/2 bg-white rounded-full mouse w-14 h-14">
                 <svg
                   height="24"
                   width="24"
@@ -213,10 +304,10 @@ export default function Home() {
                 <div className="absolute top-16 bg-white rounded-xl text-[0.6rem] px-2 py-1 bg-opacity-50 w-max">
                   https://www.npmjs.com/package/valigators
                 </div>
-              </span>
+              </div> */}
               <div className="w-full h-1/2 dots group-hover:bg-[-50px_-50px] transition-all duration-500"></div>
               <div className="w-full p-5">
-                <h2 className="text-white font-bold text-2xl mb-2">
+                <h2 className="mb-2 text-2xl font-bold text-white">
                   Valigators
                 </h2>
                 <p className="text-xs text-white opacity-60">
@@ -227,7 +318,7 @@ export default function Home() {
             <div className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative ">
               <div className="w-full h-1/2 dots group-hover:bg-[-50px_-50px] transition-all duration-500"></div>
               <div className="w-full p-5">
-                <h2 className="text-white font-bold text-2xl mb-2">
+                <h2 className="mb-2 text-2xl font-bold text-white">
                   Music Scanner
                 </h2>
                 <p className="text-xs text-white opacity-60">
@@ -239,8 +330,13 @@ export default function Home() {
             <a
               href="https://github.com/wkelly1/Carousel"
               className="bg-[#272A41] h-[300px] w-56 rounded border-1 border-white border-opacity-20 group card relative hover:cursor-none"
+              onMouseEnter={() => {
+                setShow("show");
+                setMouseText("https://github.com/wkelly1/Carousel");
+              }}
+              onMouseLeave={() => setShow("hide")}
             >
-              <span className="mouse w-14 h-14  bg-white rounded-full fixed z-50 top-0 left-0 transition-all -translate-x-1/2 -translate-y-1/2 flex justify-center items-center ">
+              {/* <span className="fixed top-0 left-0 z-50 flex items-center justify-center transition-all -translate-x-1/2 -translate-y-1/2 bg-white rounded-full mouse w-14 h-14 ">
                 <svg
                   height="24"
                   width="24"
@@ -264,10 +360,10 @@ export default function Home() {
                 <div className="absolute top-16 bg-white rounded-xl text-[0.6rem] px-2 py-1 bg-opacity-50 w-max">
                   https://github.com/wkelly1/Carousel
                 </div>
-              </span>
+              </span> */}
               <div className="w-full h-1/2 dots group-hover:bg-[-50px_-50px] transition-all duration-500"></div>
               <div className="w-full p-5">
-                <h2 className="text-white font-bold text-2xl mb-2">Carousel</h2>
+                <h2 className="mb-2 text-2xl font-bold text-white">Carousel</h2>
                 <p className="text-xs text-white opacity-60">
                   A javascript carousel library.
                 </p>
@@ -404,7 +500,7 @@ export default function Home() {
         </div>
         <div className="ml-[calc(30%-20px+17.5vw)] mt-[137px]">
           <p className="text-[#4CFFC9] font-bold text-xs">CONTACT</p>
-          <h2 className="text-white font-bold text-2xl mb-5">Get in Touch</h2>
+          <h2 className="mb-5 text-2xl font-bold text-white">Get in Touch</h2>
         </div>
       </section>
 
@@ -431,7 +527,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="fixed inset-0 w-full h-full overflow-hidden z-10">
+      <div className="fixed inset-0 z-10 w-full h-full overflow-hidden">
         <div className="blob" id="blob"></div>
       </div>
       <div className="box-content absolute w-[0.1rem] bottom-[300px] top-[calc(200px+1.25rem)] left-[calc(30%-50px)] bg-[#1D2346] z-10">
