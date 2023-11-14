@@ -45,7 +45,7 @@ function LinkMouse({ link, show, parentRef }) {
         stiffness: 500,
         damping: 28,
       }}
-      className="fixed top-0 left-0 z-50 flex items-center justify-center bg-white rounded-full pointer-events-none w-14 h-14 "
+      className="fixed top-0 left-0 z-50 flex items-center justify-center bg-white rounded-full opacity-0 pointer-events-none w-14 h-14 "
     >
       <svg
         height="24"
